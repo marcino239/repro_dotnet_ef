@@ -1,0 +1,14 @@
+package(default_visibility = ["//visibility:public"])
+
+load("@io_bazel_rules_dotnet//dotnet:defs.bzl", "core_library")
+
+core_library(
+    name = "dotnet_ef.dll",
+    srcs = glob(["**/*.cs"], ["bin/**", "obj/**" ]),
+    nowarn = [ "CS1701", "CS1702" ],
+    deps = [
+        "@microsoft.entityframeworkcore//:netcoreapp3.1_core",
+        "@io_bazel_rules_dotnet//dotnet/stdlib.core:Microsoft.AspNetCore.App",
+        "@io_bazel_rules_dotnet//dotnet/stdlib.core:libraryset",
+    ],
+)
